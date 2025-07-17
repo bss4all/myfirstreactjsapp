@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
+import Select from 'react-select';
 import './App.css';
+
+const options = [
+  { value: 'apple', label: 'Apple' },
+  { value: 'banana', label: 'Banana' },
+  { value: 'orange', label: 'Orange' },
+  { value: 'grape', label: 'Grape' },
+  { value: 'pear', label: 'Pear' },
+];
 
 function App() {
 
   const [selectedFruit, setSelectedFruit] = useState('apple');
   const [selectedColor, setSelectedColor] = useState('red');
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleChange = (event) => {
     setSelectedFruit(event.target.value);
@@ -12,6 +22,10 @@ function App() {
 
   const handleColor = (event) => {
     setSelectedColor(event.target.value);
+  };
+
+  const handleFruits = (selected) => {
+    setSelectedOptions(selected);
   };
 
   return (
@@ -30,6 +44,19 @@ function App() {
         <option value="green">Green</option>
       </select>
       <p>You selected Color : {selectedColor}</p>
+      <h3>Select Fruits</h3>
+      <Select
+        options={options}
+        isMulti
+        value={selectedOptions}
+        onChange={handleFruits}
+      />
+      <h4>You selected:</h4>
+        <ul>
+          {selectedOptions.map((option) => (
+            <li key={option.value}>{option.label}</li>
+          ))}
+        </ul>
     </div>
   );
 }
