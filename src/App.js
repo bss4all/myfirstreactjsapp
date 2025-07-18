@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import './App.css';
+import ShowMe from './components/ShowMe';
 
 const options = [
   { value: 'apple', label: 'Apple' },
@@ -57,6 +58,7 @@ function App() {
             <li key={option.value}>{option.label}</li>
           ))}
         </ul>
+      <ShowMe/>
     </div>
   );
 }
